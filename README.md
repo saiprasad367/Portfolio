@@ -29,10 +29,9 @@
 
 ```bash
 # Clone the repository (or skip if already downloaded)
-git clone https://github.com/yourusername/your-portfolio.git
-
+https://github.com/saiprasad367/Portfolio.git
 # Go into the project folder
-cd your-portfolio
+cd saiprasad-digital-canvas-main
 
 # Install dependencies
 npm install
