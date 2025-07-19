@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic Portfolio Design System - Chindam SaiPrasad
+Premium dark theme with electric blue and neon purple accents
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Futuristic Portfolio Colors - Light Mode (will auto-switch to dark) */
+    --background: 220 15% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 15% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 15% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Electric Blue Primary */
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 15% 6%;
+
+    /* Neon Purple Secondary */
+    --secondary: 277 88% 53%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Dark muted tones */
+    --muted: 220 15% 12%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    /* Neon accent */
+    --accent: 277 88% 53%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 12%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Portfolio Colors */
+    --electric-blue: 180 100% 50%;
+    --neon-purple: 277 88% 53%;
+    --dark-bg: 220 15% 6%;
+    --card-bg: 220 15% 8%;
+    --glass-bg: 220 15% 8% / 0.6;
+    --glow-blue: 180 100% 50% / 0.3;
+    --glow-purple: 277 88% 53% / 0.3;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(277 88% 53%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(220 15% 6%) 0%, hsl(220 15% 12%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(220 15% 8% / 0.8) 0%, hsl(220 15% 12% / 0.6) 100%);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dark {
+    /* Already optimized for dark mode - same as root */
+    --background: 220 15% 6%;
+    --foreground: 210 40% 98%;
+    --card: 220 15% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 15% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 15% 6%;
+    --secondary: 277 88% 53%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 15% 12%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 277 88% 53%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 15% 18%;
+    --input: 220 15% 12%;
+    --ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-outfit;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-lg border border-border/30 rounded-xl;
+    box-shadow: 0 8px 32px hsl(var(--glow-blue)), inset 0 1px 0 hsl(var(--border)/0.2);
+  }
+
+  /* Neon Glow Effects */
+  .glow-blue {
+    box-shadow: 0 0 20px hsl(var(--glow-blue)), 0 0 40px hsl(var(--glow-blue)), 0 0 60px hsl(var(--glow-blue));
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 20px hsl(var(--glow-purple)), 0 0 40px hsl(var(--glow-purple)), 0 0 60px hsl(var(--glow-purple));
+  }
+
+  /* Animated Gradient Text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradientMove 3s ease-in-out infinite;
+  }
+
+  /* Floating Animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Typing Animation */
+  .typing {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--primary));
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  /* Hover Scale */
+  .hover-scale {
+    transition: var(--transition-spring);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Animated Border */
+  .animated-border {
+    position: relative;
+    background: linear-gradient(45deg, hsl(var(--card-bg)), hsl(var(--card-bg))) padding-box,
+                var(--gradient-primary) border-box;
+    border: 2px solid transparent;
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: var(--gradient-primary);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    animation: borderRotate 3s linear infinite;
+  }
+}
+
+@layer utilities {
+  /* Custom Font Classes */
+  .font-outfit {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes gradientMove {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: hsl(var(--primary));
+  }
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px hsl(var(--glow-blue));
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--glow-blue)), 0 0 30px hsl(var(--glow-blue));
+  }
+}
